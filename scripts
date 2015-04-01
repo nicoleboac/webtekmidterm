@@ -1,0 +1,201 @@
+var finalTotalAmount = 0;
+var totalFunds = 0;
+
+window.onload = function () {
+/*	if(! localStorage.Adate){
+		alert("hi");
+	}else{
+		alert("goes here");
+		
+			var table = document.getElementById("myTable");
+			var row = table.insertRow(2);
+			
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			var cell4 = row.insertCell(3);
+			var cell5 = row.insertCell(4);
+			var cell6 = row.insertCell(5);
+			var cell7 = row.insertCell(6);
+			
+			var fdate = localStorage.Adate;
+			var fmTime = localStorage.AmTime;
+			var fName = localStorage.Aname;
+			var fTimeIn = localStorage.AtimeIn;
+			var fTimeOut = localStorage.AtimeOut;
+	
+			cell1.innerHTML = fdate;
+			cell2.innerHTML = fmTime;
+			cell3.innerHTML = fName;
+			cell4.innerHTML = fTimeIn;
+			cell5.innerHTML = fTimeOut;
+	}*/
+	
+	var d = new Date();
+	document.getElementById('dateToday').innerHTML = d.getDate();		
+};
+
+function toggle() {
+	var ele = document.getElementById("menu");
+
+	if(ele.style.display == "block") {
+		ele.style.display = "none";
+		
+		
+	}
+	else {
+		ele.style.display = "block";
+		
+	}
+ return false;
+};
+
+
+function kevin() {
+			var date = document.getElementById("dateColumn").value;
+			var timeIn = document.getElementById("timeInColumn").value;
+			var timeOut = document.getElementById("timeOutColumn").value;
+			var mTime = document.getElementById("meetingTimeColumn").value;
+			var name = document.getElementById("name").value;
+			
+			if(! date || ! timeIn || ! timeOut|| ! mTime){
+			alert("Incomplete Form");
+			}else{
+			var table = document.getElementById("myTable");
+			var row = table.insertRow(2);
+			
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			var cell4 = row.insertCell(3);
+			var cell5 = row.insertCell(4);
+			var cell6 = row.insertCell(5);
+			var cell7 = row.insertCell(6);
+			
+			var mTimeCheck=mTime.split(":");
+			var mTimeMin=mTimeCheck[1];
+			var mTimeHour=mTimeCheck[0];
+			
+			var timeInCheck=timeIn.split(":");
+			var timeInMin=timeInCheck[1];		
+			var timeInHour=timeInCheck[0];
+			
+			if(timeInMin > mTimeMin){
+				cell6.innerHTML = "Late";
+				cell7.innerHTML = 50;
+				totalFunds=totalFunds+50;
+				
+			}else if(timeInHour < mTimeCheck){
+				cell6.innerHTML = "On Time";
+				cell7.innerHTML = 0;
+			}else if(timeInHour > mTimeCheck){
+				cell6.innerHTML = "Late";
+				cell7.innerHTML = 50;
+				totalFunds=totalFunds+50;
+			}
+			else {
+				cell6.innerHTML = "On Time";
+				cell7.innerHTML = 0;
+			}
+			
+/*			if(typeof(Storage) !== "undefined") {
+				return alert("true");
+				} else {
+				return alert("false");
+			}*/
+			
+			localStorage.Adate = date;
+			localStorage.AmTime = mTime;
+			localStorage.Aname = name;
+			localStorage.AtimeIn = timeIn;
+			localStorage.AtimeOut = timeOut;
+			
+			var fdate = localStorage.Adate;
+			var fmTime = localStorage.AmTime;
+			var fName = localStorage.Aname;
+			var fTimeIn = localStorage.AtimeIn;
+			var fTimeOut = localStorage.AtimeOut;
+	
+			cell1.innerHTML = fdate;
+			cell2.innerHTML = fmTime;
+			cell3.innerHTML = fName;
+			cell4.innerHTML = fTimeIn;
+			cell5.innerHTML = fTimeOut;
+			
+			}
+}
+			function kevin1() {
+			
+			var date = document.getElementById("expcol1").value;
+			var description = document.getElementById("expcol2").value;
+			var amount = document.getElementById("expcol3").value;
+
+			if(! date || ! description || ! amount){
+			alert("Incomplete Form");
+			}else{
+			var table = document.getElementById("myTable");
+			var row = table.insertRow(1);
+			
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			
+			localStorage.Edate = date;
+			localStorage.Edesc = description;
+			localStorage.Eamount = amount;
+			
+			var fDate = localStorage.Edate;
+			var fDesc = localStorage.Edesc;
+			var fAmount = localStorage.Eamount;
+			
+			cell1.innerHTML = fDate;
+			cell2.innerHTML = fDesc;
+			cell3.innerHTML = fAmount;
+			
+			var newAmount = parseInt(amount);
+			var finalTotal= finalTotalAmount + newAmount;
+			
+			finalTotalAmount=finalTotal;
+			
+			document.getElementById('totalAmount').innerHTML = finalTotal;
+			alert(localStorage.Adate);
+			}
+			
+			
+}
+
+		function kevin2() {
+			var date = document.getElementById("fundcol1").value;
+			var name = document.getElementById("fundcol2").value;
+			var description = document.getElementById("fundcol3").value;
+			var amount = document.getElementById("fundcol4").value;
+			
+			
+			if(! date || ! name || ! description|| ! amount){
+			alert("Incomplete Form");
+			}else{
+			var table = document.getElementById("myTable");
+			var row = table.insertRow(1);
+			
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			var cell4 = row.insertCell(3);
+		
+			cell1.innerHTML = date;
+			cell2.innerHTML = name;
+			cell3.innerHTML = description;
+			cell4.innerHTML = amount;
+			
+			var newAmount = parseFloat(amount);
+			var finalTotal= totalFunds + newAmount;
+			
+			totalFunds=finalTotal;
+			
+			document.getElementById('totalFunds').innerHTML = finalTotal;
+			}
+			
+			
+
+
+}
